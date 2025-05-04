@@ -2,6 +2,12 @@
 
 This project is tested with BrowserStack.
 
+## TOOL IS DEPRECATED
+
+This tool is deprecated and may not work anymore because YouTube have changed how the identity tokens (po_token and visitor_data) are handled. This tool does not work with this new method.
+
+Please migrate to Invidious companion which support the new method and handle the identity tokens automatically: https://github.com/iv-org/invidious-companion.
+
 ## Description
 
 This script will output two parameters: po_token and visitor_data. Needed for passing YouTube checks in Invidious or the program that use the po_token functionality.
