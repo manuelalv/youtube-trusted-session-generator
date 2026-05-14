@@ -102,6 +102,7 @@ class PotokenExtractor:
             self._extraction_done.clear()
             try:
                 browser = await nodriver.start(headless=False,
+                               no_sandbox=True,
                                                browser_executable_path=self.browser_path,
                                                user_data_dir=self.profile_path)
             except FileNotFoundError as e:
@@ -115,7 +116,6 @@ class PotokenExtractor:
                 await self._wait_for_handler()
             await tab.close()
             browser.stop()
-
     @staticmethod
     async def _click_on_player(tab: nodriver.Tab) -> bool:
         try:
