@@ -102,16 +102,22 @@ class PotokenExtractor:
             self._extraction_done.clear()
             try:
                 browser = await nodriver.start(
-                               headless=False,
-                               no_sandbox=True,
-                               browser_args=[
-                                   '--no-sandbox',
-                                   '--disable-setuid-sandbox',
-                                   '--disable-dev-shm-usage',
-                                   '--disable-gpu',
-                               ],
-                               browser_executable_path=self.browser_path,
-                               user_data_dir=self.profile_path)
+    headless=False,
+    no_sandbox=True,
+    browser_args=[
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
+        '--disable-extensions',
+        '--disable-background-networking',
+        '--single-process',
+        '--no-zygote',
+    ],
+    browser_executable_path=self.browser_path,
+    user_data_dir=self.profile_path,
+                )
             except FileNotFoundError as e:
                 msg = "could not find Chromium. Make sure it's installed or provide direct path to the executable"
                 raise FileNotFoundError(msg) from e
