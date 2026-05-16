@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile.webserver', '-t', 'us-central1-docker.pkg.dev/gen-lang-client-0650018595/euphoria-repo/potoken:latest', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/gen-lang-client-0650018595/euphoria-repo/potoken:latest']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args: ['gcloud', 'run', 'deploy', 'potoken-generator', '--image', 'us-central1-docker.pkg.dev/gen-lang-client-0650018595/euphoria-repo/potoken:latest', '--region', 'us-central1', '--quiet']
